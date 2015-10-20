@@ -1,0 +1,234 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="../../favicon.ico">
+        <link href="css/mycss.css" rel="stylesheet">
+
+        <title>Assignment 6: TMNPizza</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Custom styles for this template -->
+        <link href="css/jumbotron-narrow.css" rel="stylesheet">
+
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+    </head>
+
+    <body onload="document.deliveryInfo.customer.focus()">
+
+        <div class="container">
+            <div class="header clearfix">
+
+                <nav>
+                    <ul class="nav nav-pills pull-right">
+                        <li role="presentation" class="active"><a href="#">Home</a></li>
+                        <li role="presentation"><a href="#">About</a></li>
+                        <li role="presentation"><a href="#">Contact</a></li>
+                    </ul>
+                </nav>
+                <h3 class="text-muted">Project TMNPizzzza</h3>
+                <img src="/images/deliv_dude.png" alt="" style="width:100px;height:100px;">
+
+            </div>
+
+            <div class="jumbotron">
+                <img src="/images/tmnt_pizza.jpg" alt="" style="width:600px;height:400px;">
+                <h1>Teenage Mutant Ninja Pizza</h1>
+                <p class="lead">Order NOW before the turtles eat them all!</p>
+                <p><a class="btn btn-lg btn-success" href="#" role="button">Place your order</a></p>
+            </div>
+
+
+            <section id="content">
+                <form id="deliveryInfo" name="deliveryInfo" onsubmit="return deliveryValidation();">
+                    <fieldset>
+                        <legend>Part 1: Delivery Information</legend>
+                        <p><em>Note: All fields are required.</em></p><br>
+
+                        <div class="fieldname">Full Name:</div>
+                        <input class="fieldbox" type="text" name="customer"><hr>
+                        <div class="fieldname">Address Type:</div>
+                        <select class="fieldbox" name="addressType">
+                            <option value="default">Select an ADDRESS TYPE</option>
+                            <option value="house">House</option>
+                            <option value="apartment">Apartment</option>
+                            <option value="business">Business</option>
+                            <option value="campus">Campus</option>
+                            <option value="hotel">Hotel</option>
+                            <option value="dormitory">Dormitory</option>
+                            <option value="other">Other</option>
+                        </select><br><hr>
+
+                        <div class="fieldname">Street Address:</div>
+                        <input class="fieldbox" type="text" name="streetAddress"><hr>
+                        <div class="fieldname">Apt./ Suite No:</div>
+                        <input class="fieldbox" type="text" name="aptNo"><hr>
+                        <div class="fieldname">City:</div>
+                        <input class="fieldbox" type="text" name="city"><hr>
+                        <div class="fieldname">State:</div>
+                        <input class="fieldbox" type="text" name="state" placeholder="2 LETTER abbr."><hr>
+                        <div class="fieldname">Zip Code:</div>
+                        <input class="fieldbox" type="text" name="zipCode"><hr>
+                        <div class="fieldname">Phone Number:</div>
+                        <input class="fieldbox" type="tel" name="phone" placeholder="xxx-xxx-xxxx"><hr>
+                        <div class="fieldname">Email:</div>
+                        <input class="fieldbox" type="email" name="email" placeholder="xxxx@____.com"><hr>
+
+                        <input id="submitbtn" type="submit" value="Submit DELIVERY info"><br><br><br><br><br>
+
+                    </fieldset>
+                </form>
+
+
+                <form id="pizzaOrder" action="#" method="post" target="_blank">
+                    <fieldset>
+                    <legend>Part 2: Pizza Order</legend>
+
+                    <div class="fieldname">Dough - Select your type:</div>
+                    <div id="dough">
+                        <label for="Hand Tossed"><input type="radio" id="handTossed" name="dough" value="Hand Tossed" onclick="populateDropdown('handTossed')">Hand Tossed</label><br>
+                        <label for="Thin Crust"><input type="radio" id="thinCrust" name="dough" value="Thin Crust">Thin Crust</label><br>
+                        <label for="New York Style"><input type="radio" id="newYorkStyle" name="dough" value="New York Style">New York Style</label><br>
+                        <label for="Gluten Free"><input type="radio" id="glutenFree" name="dough" value="Gluten Free">Gluten Free</label><br>
+                    </div>
+
+                    <div class="fieldname" id="doughSize">Sizes:</div>
+                    <select class="fieldbox" name="doughSizeSelect" id="doughSizeSelect">
+                        <option value="Select a size">Select a Size</option>
+                        </select><br><hr>
+                    <hr>
+
+                    <div class="fieldname">Cheese:</div>
+                    <select class="fieldbox" name="cheese">
+                        <option value="Light">Light: no charge</option>
+                        <option value="Normal">Normal: no charge</option>
+                        <option value="Extra">Extra: +$2.99</option>
+                        <option value="Double">Double: +$3.99</option>
+                   </select><br><hr>
+
+                    <div class="fieldname">Sauce:</div>
+                    <select class="fieldbox" name="sauce">
+                        <option value="Regular Tomato">Regular Tomato: no charge</option>
+                        <option value="Hearty Tomato">Hearty Tomato: +$0.99</option> <!-- "selected" is pre-selected for you -->
+                        <option value="BBQ sauce">BBQ sauce: +$1.99</option>
+                    </select><br><hr>
+
+                       <div class="fieldname">Additional Toppings: +$0.99 each</div>
+                       <div id="toppings">
+                           <label for="All"><input type="checkbox" name="All" id="All" value="All" >All</label><br>
+                           <label for="Pepperoni"><input type="checkbox" name="Pepperoni" id="Pepperoni" value="Pepperoni">Pepperoni</label><br>
+                           <label for="Sausage"><input type="checkbox" name="Sausage" id="Sausage" value="Sausage">Sausage </label><br>
+                          <label for="Ham"><input type="checkbox" name="Ham" id="Ham" value="Ham" >Ham</label><br>
+                           <label for="Bacon"><input type="checkbox" name="Bacon" id="Bacon" value="Bacon">Bacon</label><br>
+                           <label for="Salami"><input type="checkbox" name="Salami" id="Salami" value="Salami">Salami</label><br>
+                           <label for="Peppers"><input type="checkbox" name="Peppers" id="Peppers" value="Peppers" >Peppers</label><br>
+                           <label for="Olives"><input type="checkbox" name="Olives" id="Olives" value="Olives">Olives</label><br>
+                           <label for="Jalapenos"><input type="checkbox" name="Jalapenos" id="Jalapenos" value="Jalapenos">Jalapenos </label><br>
+                           <label for="Mushrooms"><input type="checkbox" name="Mushrooms" id="Mushrooms" value="Mushrooms" >Mushrooms</label><br>
+                           <label for="Pineapple"><input type="checkbox" name="Pineapple" id="Pineapple" value="Pineapple">Pineapple</label><br>
+                           <label for="Onion"><input type="checkbox" name="Onion" id="Onion" value="Onion">Onion</label><br>
+                       </div>
+                       <hr>
+                        <input id="submitOrder" type="submit" value="Submit Pizza ORDER"><br><br><br><br><br>
+                    </fieldset>
+                </form>
+
+
+                <form id="billingInfo" action="#" method="post" target="_blank">
+                    <fieldset>
+                    <legend>Part 3: Billing Information</legend>
+
+                       <div id="samebilling">
+                           <label for="same"><input type="checkbox" name="product" id="same" value="same">Same as Delivery Information </label><br><br>
+                       <p><em>Note: All Fields are required.</em></p><br>
+
+                       <div class="fieldname">Name:</div>
+                       <input class="fieldbox" type="text" name="name"><hr>
+                       <div class="fieldname">Address Type:</div>
+                       <select class="fieldbox" name="addressType">
+                           <option value="house">House</option>
+                           <option value="apartment">Apartment</option>
+                           <option value="business">Business</option>
+                           <option value="campus">Campus</option>
+                           <option value="hotel">Hotel</option>
+                           <option value="dormitory">Dormitory</option>
+                           <option value="other">Other</option>
+                       </select><br><hr>
+
+                       <div class="fieldname">Street Address:</div>
+                       <input class="fieldbox" type="text" name="streetAddress"><hr>
+                       <div class="fieldname">Apt.No:</div>
+                       <input class="fieldbox" type="text" name="aptNo"><hr>
+                       <div class="fieldname">City:</div>
+                       <input class="fieldbox" type="text" name="city"><hr>
+                       <div class="fieldname">State:</div>
+                       <input class="fieldbox" type="text" name="state"><hr>
+                       <div class="fieldname">Zip Code:</div>
+                       <input class="fieldbox" type="text" name="zipCode"><hr>
+                       <div class="fieldname">Phone Number:</div>
+                       <input class="fieldbox" type="tel" name="phone" pattern="\d{3}[\-]\d{3}[\-]\d{4}"><hr>
+                       <div class="fieldname">Email:</div>
+                       <input class="fieldbox" type="email" name="email" pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/"><hr><br>
+                       <div class="fieldname">Credit Card No.:</div>
+                       <input class="fieldbox" type="text" name="creditcardno"><hr>
+                       <div class="fieldname">CVC code:</div>
+                       <input class="fieldbox" type="text" name="cvc"><hr>
+                       <div class="fieldname">Expiration MONTH:</div>
+                       <select class="fieldbox" name="expirationdate">
+                           <option value="January">January</option>
+                           <option value="February">February</option>
+                           <option value="March">March</option>
+                           <option value="April">April</option>
+                           <option value="May">May</option>
+                           <option value="June">June</option>
+                           <option value="July">July</option>
+                           <option value="August">August</option>
+                           <option value="September">September</option>
+                           <option value="October">October</option>
+                           <option value="November">November</option>
+                           <option value="December">December</option>
+                           </select><br><hr>
+
+                        <div class="fieldname">Expiration YEAR:</div>
+                        <select class="fieldbox" name="expirationdate">
+                            <option value="2015">2015</option>
+                            <option value="2016">2016</option>
+                            <option value="2017">2017</option>
+                            <option value="2018">2018</option>
+                            <option value="2019">2019</option>
+                            <option value="2020">2020</option>
+                           </select><br><hr><br><br><br>
+                       </div>
+
+
+                   <!-- <input id="submitbtn" type="submit" value="SUBMIT ORDER"> -->
+
+
+                   </fieldset>
+                </form>
+            </section>
+
+
+            <footer class="footer">
+                <p>&copy; Company 2014</p>
+            </footer>
+
+        </div> <!-- /container -->
+
+        <script src ="/js/my.js"></script>
+
+    </body>
+</html>
