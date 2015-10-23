@@ -45,7 +45,11 @@ body {
 .jumbotron {
     text-align: center;
     border-bottom: 1px solid #e5e5e5;
+    background: url(/images/tmnt_pizza.jpg) no-repeat;
+    background-size: 700px 400px;
+    height: 400px;
 }
+
 .jumbotron .btn {
     padding: 14px 24px;
     font-size: 21px;
