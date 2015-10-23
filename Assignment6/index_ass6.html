@@ -1,0 +1,248 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="../../favicon.ico">
+        <link href="css/mycss.css" rel="stylesheet">
+
+        <title>Assignment 6: TMNPizza</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Custom styles for this template -->
+        <link href="css/jumbotron-narrow.css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+    </head>
+
+    <body> <!-- onload="document.deliveryInfo.customer.focus()" -->
+
+        <div class="container">
+            <div class="header clearfix">
+
+                <nav>
+                    <ul class="nav nav-pills pull-right">
+                        <li role="presentation" class="active"><a href="#">Home</a></li>
+                    </ul>
+                </nav>
+                <h3 class="text-muted">Project TMNPizzzza</h3>
+                <img src="/images/deliv_dude.png" alt="" style="width:100px;height:100px;">
+
+            </div>
+
+
+            <h1 class="tmnt">Teenage Mutant Ninja Pizza</h1>
+            <p class="lead">Order NOW before the turtles eat them all!</p>
+            <div id="orderbtn"><a class="btn btn-lg btn-success" href="#" role="button">Place your order</a></div><br>
+
+            <div class="jumbotron"></div>
+
+
+            <section id="content">
+
+                <form id="deliveryInfo" name="deliveryInfo" onsubmit="return deliveryValidation();">
+                    <fieldset>
+                        <legend>Part 1: Delivery Information</legend>
+                        <p><em>Note: All fields are required.</em></p><br>
+
+                        <div class="fieldname">Full Name:</div>
+                        <input class="fieldbox" type="text" name="customer"><hr>
+                        <div class="fieldname">Address Type:</div>
+                        <select class="fieldbox" name="addressType">
+                            <option value="default">Select an ADDRESS TYPE</option>
+                            <option value="house">House</option>
+                            <option value="apartment">Apartment</option>
+                            <option value="business">Business</option>
+                            <option value="campus">Campus</option>
+                            <option value="hotel">Hotel</option>
+                            <option value="dormitory">Dormitory</option>
+                            <option value="other">Other</option>
+                        </select><br><hr>
+
+                        <div class="fieldname">Street Address:</div>
+                        <input class="fieldbox" type="text" name="streetAddress"><hr>
+                        <div class="fieldname">Apt./ Suite No:</div>
+                        <input class="fieldbox" type="text" name="aptNo"><hr>
+                        <div class="fieldname">City:</div>
+                        <input class="fieldbox" type="text" name="city"><hr>
+                        <div class="fieldname">State:</div>
+                        <input class="fieldbox" type="text" name="state" placeholder="2 LETTER abbr."><hr>
+                        <div class="fieldname">Zip Code:</div>
+                        <input class="fieldbox" type="text" name="zipCode" placeholder="Enter 5 digit zip"><hr>
+                        <div class="fieldname">Phone Number:</div>
+                        <input class="fieldbox" type="tel" name="phone" placeholder="xxx-xxx-xxxx"><hr>
+                        <div class="fieldname">Email:</div>
+                        <input class="fieldbox" type="email" name="email" placeholder="xxxx@____.com"><hr><br>
+
+                       <input id="submitbtn" type="submit" value="Save DELIVERY info"><br><br><br><br><br>
+                      </fieldset>
+
+
+                    <fieldset>
+                        <legend>Part 2: Pizza Order</legend>
+
+                        <div class="fieldname">Dough - Select your type:</div>
+                        <div id="pizzaDough">
+                            <label for="Hand Tossed"><input type="radio" name="dough" id="dough1" value="Hand Tossed" onclick="javascript:populateDropdown(this);"/>Hand Tossed</label><br>
+                            <label for="Thin Crust"><input type="radio" name="dough" id="dough2" value="Thin Crust" onclick="javascript:populateDropdown(this);" />Thin Crust</label><br>
+                            <label for="New York Style"><input type="radio" name="dough" id="dough3" value="New York Style" onclick="javascript:populateDropdown(this);" />New York Style</label><br>
+                            <label for="Gluten Free"><input type="radio" name="dough" id="dough4" value="Gluten Free" onclick="javascript:populateDropdown(this);" />Gluten Free</label><br>
+                        </div>
+
+                        <div class="fieldname" id="doughSelect">Sizes:</div>
+                        <select class="fieldbox" name="doughSize" id="dough_list" size="1">
+                            <option value="00">Select a Dough Type first</option>
+                        </select><br>
+                        <hr>
+
+                        <div class="fieldname">Cheese:</div>
+                        <select class="fieldbox" name="cheese" id="cheese">
+                            <option name="Normal" id="Normal" value="0.00">Normal: no charge</option>
+                            <option name="Light" id="Light" value="0.00">Light: no charge</option>
+                            <option name="Extra" id="Extra" value="2.99">Extra: +$2.99</option>
+                            <option name="Double" id="Double" value="3.99">Double: +$3.99</option>
+                            <input type="hidden" name="cheeseTot" value="0.00">
+                        </select><br><hr>
+
+                        <div class="fieldname">Sauce:</div>
+                        <select class="fieldbox" name="sauce" id="sauce">
+                            <option name="Regular Tomato" id="regTomato" value="0.00">Regular Tomato: no charge</option>
+                            <option name="Hearty Tomato" id="heartyTomato" value="0.99">Hearty Tomato: +$0.99</option>
+                            <option name="BBQ sauce" id="bbq" value="1.99">BBQ sauce: +$1.99</option>
+                            <input type="hidden" name="sauceTot" value="0.00">
+                        </select><br><hr>
+
+                        <div class="fieldname">Additional Toppings: +$0.99 each</div>
+                        <div id="toppings">
+                            <label for="Pepperoni"><input type="checkbox" name="topping" id="Pepperoni" value="0.99">Pepperoni</label><br>
+                            <label for="Sausage"><input type="checkbox" name="topping" id="Sausage" value="0.99">Sausage </label><br>
+                            <label for="Ham"><input type="checkbox" name="topping" id="Ham" value="0.99" >Ham</label><br>
+                            <label for="Bacon"><input type="checkbox" name="topping" id="Bacon" value="0.99">Bacon</label><br>
+                            <label for="Salami"><input type="checkbox" name="topping" id="Salami" value="0.99">Salami</label><br>
+                            <label for="Peppers"><input type="checkbox" name="topping" id="Peppers" value="0.99" >Peppers</label><br>
+                            <label for="Olives"><input type="checkbox" name="topping" id="Olives" value="0.99">Olives</label><br>
+                            <label for="Jalapenos"><input type="checkbox" name="topping" id="Jalapenos" value="0.99">Jalapenos </label><br>
+                            <label for="Mushrooms"><input type="checkbox" name="topping" id="Mushrooms" value="0.99" >Mushrooms</label><br>
+                            <label for="Pineapple"><input type="checkbox" name="topping" id="Pineapple" value="0.99">Pineapple</label><br>
+                            <label for="Onion"><input type="checkbox" name="topping" id="Onion" value="0.99">Onion</label><br>
+                            <input type="hidden" name="toppingTot" value="0.00">
+                        </div>
+                        <hr>
+
+                        <p><label class="total">Total: $ <input type="text" name="total"  value="0.00" readonly="readonly"></label></p>
+
+                        <button id="calcTotCost" type="button" onclick="calcTotalCost();">"CONFIRM Pizza ORDER"</button><br><br><br><br>
+
+                    </fieldset>
+
+
+                    <fieldset>
+                    <legend>Part 3: Billing Information</legend>
+
+                       <div id="samebilling">
+                           <label for="same"><input type="checkbox" name="billingtoo" id="billing" onclick="FillBilling(this.form)">Same as Delivery Information </label><br><br>
+                       <p><em>Note: All Fields are required.</em></p><br>
+                           <div class="fieldname">Full Name:</div>
+                           <input class="fieldbox" type="text" name="billingCustomer"><hr>
+                           <div class="fieldname">Address Type:</div>
+                           <select class="fieldbox" name="billingAddressType">
+                               <option value="default">Please select your Address type</option>
+                               <option value="house">House</option>
+                               <option value="apartment">Apartment</option>
+                               <option value="business">Business</option>
+                               <option value="campus">Campus</option>
+                               <option value="hotel">Hotel</option>
+                               <option value="dormitory">Dormitory</option>
+                               <option value="other">Other</option>
+                           </select><br><hr>
+
+                           <div class="fieldname">Street Address:</div>
+                           <input class="fieldbox" type="text" name="billingStreetAddress"><hr>
+                           <div class="fieldname">Apt./ Suite No:</div>
+                           <input class="fieldbox" type="text" name="billingAptNo"><hr>
+                           <div class="fieldname">City:</div>
+                           <input class="fieldbox" type="text" name="billingCity"><hr>
+                           <div class="fieldname">State:</div>
+                           <input class="fieldbox" type="text" name="billingState"><hr>
+                           <div class="fieldname">Zip Code:</div>
+                           <input class="fieldbox" type="text" name="billingZipCode"><hr>
+                           <div class="fieldname">Phone Number:</div>
+                           <input class="fieldbox" type="tel" name="billingPhone" placeholder="xxx-xxx-xxxx"><hr>
+                           <div class="fieldname">Email:</div>
+                           <input class="fieldbox" type="email" name="billingEmail"><hr><br>
+
+
+                           <div class="fieldname">Card Type:</div>
+                               <select tabindex="11" class="fieldbox" id="CardType">
+                                   <option value="Visa">Visa</option>
+                                   <option value="MasterCard">MasterCard</option>
+                                   <option value="AmEx">American Express</option>
+                               </select>
+
+                            <div class="fieldname">Credit Card No.:</div>
+                            <input class="fieldbox" type="text" id="CardNumber" placeholder="ZAK! u have to click on the btn to make it work!"><hr>
+
+                            <div class="fieldname">CVC code:</div>
+                            <input class="fieldbox" type="text" name="cvc"><hr>
+
+
+                           <div class="fieldname">Expiration MONTH:</div>
+                           <select class="fieldbox" name="exMonth">
+                               <option value="January">January</option>
+                               <option value="February">February</option>
+                               <option value="March">March</option>
+                               <option value="April">April</option>
+                               <option value="May">May</option>
+                               <option value="June">June</option>
+                               <option value="July">July</option>
+                               <option value="August">August</option>
+                               <option value="September">September</option>
+                               <option value="October">October</option>
+                               <option value="November">November</option>
+                               <option value="December">December</option>
+                               </select><br><hr>
+
+                            <div class="fieldname">Expiration YEAR:</div>
+                            <select class="fieldbox" name="exYear">
+                                <option value="2015">2015</option>
+                                <option value="2016">2016</option>
+                                <option value="2017">2017</option>
+                                <option value="2018">2018</option>
+                                <option value="2019">2019</option>
+                                <option value="2020">2020</option>
+                               </select><br><hr>
+                           </div>
+                           <p>i got the credit card to validate, but you have to click on the button to test it. I couldn't get it to tie into the rest of the validation functions =/ </p>
+
+                    <!--<input id="myButton" type="submit" onclick="testCreditCard();" value="SUBMIT ORDER"> -->
+                        <button id="mybutton" type="button" onclick="testCreditCard();">Check if Credit Card is Valid</button>
+                        <button id="exp" type="button" onclick="validateExpDate();">Check exp date</button>
+                        
+                   </fieldset>
+
+                </form>
+            </section>
+
+
+            <footer class="footer">
+                <p>&copy; Company 2014</p>
+            </footer>
+
+        </div> <!-- /container -->
+
+        <script src ="/js/my.js"></script>
+
+    </body>
+</html>
